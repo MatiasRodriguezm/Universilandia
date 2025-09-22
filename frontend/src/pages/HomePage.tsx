@@ -4,6 +4,7 @@ import AboutSection from "../components/home/AboutSection";
 import SuccessStories from "../components/home/SuccessStories";
 import HowItWorks from "../components/home/HowItWorks";
 import Doubts from "../components/home/Doubts";
+import TermsAndConditions from "../components/home/TermsAndConditions";
 
 export default function HomePage() {
   return (
@@ -13,6 +14,7 @@ export default function HomePage() {
       <HowItWorks />
       <SuccessStories />
       <Doubts />
+      <TermsAndConditions />
     </PublicLayout>
   );
 }

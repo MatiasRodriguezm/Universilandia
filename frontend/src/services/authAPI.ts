@@ -11,3 +11,17 @@ export async function loginUser(correo: string, password: string) {
         throw error.response?.data?.error || "Error al iniciar sesión";
     }
 }
+
+export async function registerUser(payload: {
+    nombre: string,
+    apellido: string,
+    correo: string,
+    password: string
+}) {
+    try {
+        const response = await axios.post(`${API_URL}/register`, payload);
+        return response.data;
+    } catch (error: any) {
+        throw error?.response?.data?.error || "Error al registrar";
+    }
+}

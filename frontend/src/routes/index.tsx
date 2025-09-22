@@ -9,6 +9,8 @@ import UsPage from "../pages/UsPage";
 import ChaptersPage from "../pages/ChaptersPage";
 import ProtectedRoute from "./ProtectedRoute";
 import PublicOnlyRoute from "./PublicOnlyRoute";
+import RegisterPage from "../pages/RegisterPage";
+import ContactPage from "../pages/ContactPage";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +26,10 @@ const router = createBrowserRouter([
     element: <CommunityPage />,
   },
   {
+    path: "/contacto",
+    element: <ContactPage />,
+  },
+  {
     path: "/blog",
     element: <BlogPage />,
   },
@@ -36,6 +42,14 @@ const router = createBrowserRouter([
     element: (
       <PublicOnlyRoute>
         <LoginPage />
+      </PublicOnlyRoute>
+    ),
+  },
+  {
+    path: "/register",
+    element: (
+      <PublicOnlyRoute>
+        <RegisterPage />
       </PublicOnlyRoute>
     ),
   },
