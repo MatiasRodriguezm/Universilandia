@@ -32,7 +32,7 @@ export const CarreraUniversitariaPorId = async (req: Request, res: Response): Pr
           },
           {
             model: multimedia,
-            as: 'multimedia',
+            as: 'idMultimedia_multimedium',
             attributes: ['idMultimedia', 'url', 'descripcion']
           }
         ]
