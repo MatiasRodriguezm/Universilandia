@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import { tokenInvalidado } from '../models/tokenInvalidado.js';
+import { TokenInvalidado } from '../models/tokenInvalidado.js';
 
 const SECRET_KEY = process.env.SECRET_KEY || 'supersecreto';
 
@@ -14,7 +14,7 @@ export const verificarToken = async (req: Request, res: Response, next: NextFunc
   }
 
   // ✅ Verificar si el token fue invalidado
-  const tokenNegado = await tokenInvalidado.findByPk(token);
+  const tokenNegado = await TokenInvalidado.findByPk(token);
   if (tokenNegado) {
     res.status(401).json({ error: 'Token inválido. Sesión cerrada.' });
     return;

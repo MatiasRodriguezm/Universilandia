@@ -1,6 +1,6 @@
 import type { Sequelize } from "sequelize";
-import { TokenInvalidado as _TokenInvalidado } from "./TokenInvalidado";
-import type { TokenInvalidadoAttributes, TokenInvalidadoCreationAttributes } from "./TokenInvalidado";
+import { TokenInvalidado as _TokenInvalidado } from "./tokenInvalidado";
+import type { TokenInvalidadoAttributes, TokenInvalidadoCreationAttributes } from "./tokenInvalidado";
 import { apoderado as _apoderado } from "./apoderado";
 import type { apoderadoAttributes, apoderadoCreationAttributes } from "./apoderado";
 import { autorizacion as _autorizacion } from "./autorizacion";

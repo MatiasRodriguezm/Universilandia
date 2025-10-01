@@ -186,10 +186,10 @@ export const webhookNotificacion = async (req: Request, res: Response): Promise<
       idUsuario,
       idSuscripcion: nuevaSuscripcionId ?? undefined,
       monto: montoPago ?? 0,
-      metodoPago: metodoPago ?? '',
+      metodoPa: metodoPago ?? '',
       estado: estadoPago,
       referenciaExterna: paymentId.toString(),
-      fechaPago: Sequelize.literal("GETDATE()") as unknown as Date,
+      fechaPa: Sequelize.literal("GETDATE()") as unknown as Date,
     });
 
     console.log('💾 Transacción registrada correctamente');

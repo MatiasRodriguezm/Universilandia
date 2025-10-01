@@ -63,10 +63,10 @@ export const confirmarTransaccion = async (req: Request, res: Response) => {
       idUsuario,
       idSuscripcion: nuevaSuscripcionId ?? undefined,
       monto: Number(montoPago) || 0,
-      metodoPago: metodoPago ?? '',
+      metodoPa: metodoPago ?? '',
       estado: estadoPago ?? '',
       referenciaExterna: paymentId.toString(),
-      fechaPago: Sequelize.literal("GETDATE()") as unknown as Date,
+      fechaPa: Sequelize.literal("GETDATE()") as unknown as Date,
     });
 
     res.status(201).json({

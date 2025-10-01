@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import { tokenInvalidado } from '../models/tokenInvalidado.js';
+import { TokenInvalidado } from '../models/tokenInvalidado.js';
 
 const SECRET_KEY = process.env.SECRET_KEY || 'supersecreto';
 
@@ -22,7 +22,7 @@ export const logoutUser = async (req: Request, res: Response): Promise<void> => 
 
     const expiracion = new Date(decoded.exp * 1000); // JWT exp viene en segundos
 
-    await tokenInvalidado.create({
+    await TokenInvalidado.create({
       token,
       expiracion
     });
