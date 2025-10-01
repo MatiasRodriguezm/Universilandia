@@ -2,9 +2,11 @@ import * as Sequelize from 'sequelize';
 import { DataTypes, Model } from 'sequelize';
 import type { Optional } from 'sequelize';
 import type { comentario, comentarioId } from './comentario';
+import type { comentario_auditoria, comentario_auditoriaId } from './comentario_auditoria';
 import type { estudiante, estudianteId } from './estudiante';
 import type { likeBlog, likeBlogId } from './likeBlog';
 import type { suscripcion, suscripcionId } from './suscripcion';
+import type { transaccion, transaccionId } from './transaccion';
 
 export interface usuarioAttributes {
   idUsuario: string;
@@ -40,6 +42,18 @@ export class usuario extends Model<usuarioAttributes, usuarioCreationAttributes>
   hasComentario!: Sequelize.HasManyHasAssociationMixin<comentario, comentarioId>;
   hasComentarios!: Sequelize.HasManyHasAssociationsMixin<comentario, comentarioId>;
   countComentarios!: Sequelize.HasManyCountAssociationsMixin;
+  // usuario hasMany comentario_auditoria via idUsuario
+  comentario_auditoria!: comentario_auditoria[];
+  getComentario_auditoria!: Sequelize.HasManyGetAssociationsMixin<comentario_auditoria>;
+  setComentario_auditoria!: Sequelize.HasManySetAssociationsMixin<comentario_auditoria, comentario_auditoriaId>;
+  addComentario_auditorium!: Sequelize.HasManyAddAssociationMixin<comentario_auditoria, comentario_auditoriaId>;
+  addComentario_auditoria!: Sequelize.HasManyAddAssociationsMixin<comentario_auditoria, comentario_auditoriaId>;
+  createComentario_auditorium!: Sequelize.HasManyCreateAssociationMixin<comentario_auditoria>;
+  removeComentario_auditorium!: Sequelize.HasManyRemoveAssociationMixin<comentario_auditoria, comentario_auditoriaId>;
+  removeComentario_auditoria!: Sequelize.HasManyRemoveAssociationsMixin<comentario_auditoria, comentario_auditoriaId>;
+  hasComentario_auditorium!: Sequelize.HasManyHasAssociationMixin<comentario_auditoria, comentario_auditoriaId>;
+  hasComentario_auditoria!: Sequelize.HasManyHasAssociationsMixin<comentario_auditoria, comentario_auditoriaId>;
+  countComentario_auditoria!: Sequelize.HasManyCountAssociationsMixin;
   // usuario hasMany estudiante via idUsuario
   estudiantes!: estudiante[];
   getEstudiantes!: Sequelize.HasManyGetAssociationsMixin<estudiante>;
@@ -76,57 +90,49 @@ export class usuario extends Model<usuarioAttributes, usuarioCreationAttributes>
   hasSuscripcion!: Sequelize.HasManyHasAssociationMixin<suscripcion, suscripcionId>;
   hasSuscripcions!: Sequelize.HasManyHasAssociationsMixin<suscripcion, suscripcionId>;
   countSuscripcions!: Sequelize.HasManyCountAssociationsMixin;
+  // usuario hasMany transaccion via idUsuario
+  transaccions!: transaccion[];
+  getTransaccions!: Sequelize.HasManyGetAssociationsMixin<transaccion>;
+  setTransaccions!: Sequelize.HasManySetAssociationsMixin<transaccion, transaccionId>;
+  addTransaccion!: Sequelize.HasManyAddAssociationMixin<transaccion, transaccionId>;
+  addTransaccions!: Sequelize.HasManyAddAssociationsMixin<transaccion, transaccionId>;
+  createTransaccion!: Sequelize.HasManyCreateAssociationMixin<transaccion>;
+  removeTransaccion!: Sequelize.HasManyRemoveAssociationMixin<transaccion, transaccionId>;
+  removeTransaccions!: Sequelize.HasManyRemoveAssociationsMixin<transaccion, transaccionId>;
+  hasTransaccion!: Sequelize.HasManyHasAssociationMixin<transaccion, transaccionId>;
+  hasTransaccions!: Sequelize.HasManyHasAssociationsMixin<transaccion, transaccionId>;
+  countTransaccions!: Sequelize.HasManyCountAssociationsMixin;
 
   static initModel(sequelize: Sequelize.Sequelize): typeof usuario {
     return usuario.init({
     idUsuario: {
       type: DataTypes.UUID,
       allowNull: false,
-      defaultValue: DataTypes.UUIDV4, // ✅ genera UUID en Node.js,
-      primaryKey: true,
-      validate:{
-        notNull: {msg: 'tanulo el id'}
-      }
+      defaultValue: Sequelize.Sequelize.fn('newsequentialid'),
+      primaryKey: true
     },
     correo: {
       type: DataTypes.STRING(150),
       allowNull: false,
-      unique: "UQ__usuario__2A586E0BBEB6FE17",
-      validate:{
-        notNull: {msg: 'tanulo el correo'},
-        notEmpty: {msg: 'taempty el correo'}
-      }
+      unique: "UQ__usuario__2A586E0B31866069"
     },
     password: {
       type: DataTypes.STRING(255),
-      allowNull: false, 
-      validate:{
-        notNull: {msg: 'null pasword'}
-      }
+      allowNull: false
     },
     fechaCreacion: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: Sequelize.Sequelize.fn('sysdatetime'),
-      validate:{
-        notNull: {msg: 'tanulo la fecha'}
-      }
+      defaultValue: Sequelize.Sequelize.fn('sysdatetime')
     },
     tipoUsuario: {
       type: DataTypes.STRING(30),
-      allowNull: false,
-      validate:{
-        notNull: {msg: 'tanulo el tipo'},
-        notEmpty: {msg: 'taempty el tipo'}
-      }
+      allowNull: false
     },
     activo: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: true,
-      validate:{
-        notNull: {msg: 'tanulo el tipo'}
-      }
+      defaultValue: true
     }
   }, {
     sequelize,
@@ -135,7 +141,7 @@ export class usuario extends Model<usuarioAttributes, usuarioCreationAttributes>
     timestamps: false,
     indexes: [
       {
-        name: "UQ__usuario__2A586E0BBEB6FE17",
+        name: "UQ__usuario__2A586E0B31866069",
         unique: true,
         fields: [
           { name: "correo" },
