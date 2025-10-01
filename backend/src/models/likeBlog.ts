@@ -38,7 +38,7 @@ export class likeBlog extends Model<likeBlogAttributes, likeBlogCreationAttribut
     idLikeBlog: {
       type: DataTypes.UUID,
       allowNull: false,
-      defaultValue: DataTypes.UUIDV4, // ✅ genera UUID en Node.js,
+      defaultValue: Sequelize.Sequelize.fn('newsequentialid'),
       primaryKey: true
     },
     fechaCreacion: {
