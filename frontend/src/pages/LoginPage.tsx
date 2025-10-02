@@ -5,6 +5,8 @@ import DefaultInput from "../components/forms/DefaultInput";
 import Gatito from "../assets/sgv/gato-con-pc.svg";
 import SocialButton from "../components/forms/SocialButton";
 import PublicLayout from "../layouts/PublicLayout";
+import Title from "../components/auth/Title";
+import { loginSchema } from "../validation/authSchemas";
 
 export default function LoginPage() {
   const [correo, setCorreo] = useState("");
@@ -12,12 +14,35 @@ export default function LoginPage() {
   const { login, loading, error } = useAuth();
   const navigate = useNavigate();
 
+  const [formErrors, setFormErrors] = useState<{
+    correo?: string;
+    password?: string;
+  }>({});
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    const success = await login(correo, password);
-    if (success) {
-      navigate("/");
+    // const success = await login(correo, password);
+    // if (success) {
+    //   navigate("/");
+    // }
+
+    // Validación Yup
+    try {
+      await loginSchema.validate({ correo, password }, { abortEarly: false });
+      setFormErrors({});
+    } catch (err: any) {
+      if (err?.inner?.length) {
+        const collected: Record<string, string> = {};
+        err.inner.forEach((e: any) => {
+          if (e?.path && !collected[e.path]) collected[e.path] = e.message;
+        });
+        setFormErrors(collected);
+      }
+      return;
     }
+
+    const success = await login(correo, password);
+    if (success) navigate("/");
   };
 
   return (
@@ -27,13 +52,7 @@ export default function LoginPage() {
           {/* Columna izquierda formulario */}
           <div className="w-full max-w-[350px] sm:max-w-[740px] flex flex-col justify-center">
             {/* Bloque Titular*/}
-            <div className="flex flex-col items-center mb-6">
-              <div className="bg-[#EEE6E0] w-[300px] h-[120px] rounded-lg flex justify-center items-center mb-4">
-                <h1 className="font-bold text-[50px]">¡Hola!</h1>
-              </div>
-
-              <h2 className="font-semibold text-3xl">Entra en tu cuenta</h2>
-            </div>
+            <Title title="¡Hola!" subtitle="Entra en tu cuenta" />
 
             {/* Formulario */}
             <form
@@ -47,6 +66,11 @@ export default function LoginPage() {
                   value={correo}
                   onChange={e => setCorreo(e.target.value)}
                 />
+                {formErrors.correo && (
+                  <p className="text-red-600 text-sm mt-1">
+                    {formErrors.correo}
+                  </p>
+                )}
               </div>
 
               <div className="mb-6">
@@ -56,6 +80,11 @@ export default function LoginPage() {
                   value={password}
                   onChange={e => setPassword(e.target.value)}
                 />
+                {formErrors.password && (
+                  <p className="text-red-600 text-sm mt-1">
+                    {formErrors.password}
+                  </p>
+                )}
               </div>
 
               {error && (
@@ -79,7 +108,7 @@ export default function LoginPage() {
                   disabled={loading}
                   className="max-w-44 w-full p-3 bg-black text-white rounded-full font-semibold text-[20px]"
                 >
-                  Ingresar
+                  {loading ? "Ingresando..." : "Ingresar"}
                 </button>
               </div>
             </form>
