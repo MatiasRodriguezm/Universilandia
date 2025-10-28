@@ -32,7 +32,7 @@ export const CarreraUniversitariaPorId = async (req: Request, res: Response): Pr
           },
           {
             model: multimedia,
-            as: 'multimedia',
+            as: 'idMultimedia_multimedium',
             attributes: ['idMultimedia', 'url', 'descripcion']
           }
         ]
@@ -45,8 +45,8 @@ export const CarreraUniversitariaPorId = async (req: Request, res: Response): Pr
 
       // Usar directamente el nombre de archivo (sin prefijo)
       let urlVideo = null;
-      if (Carrera.multimedia?.url) {
-        urlVideo = await getSignedUrl(Carrera.multimedia.url);
+      if (Carrera.idMultimedia_multimedium?.url) {
+        urlVideo = await getSignedUrl(Carrera.idMultimedia_multimedium.url);
       }
 
       res.status(200).json({

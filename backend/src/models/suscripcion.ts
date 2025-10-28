@@ -1,6 +1,7 @@
 import * as Sequelize from 'sequelize';
 import { DataTypes, Model } from 'sequelize';
 import type { Optional } from 'sequelize';
+import type { transaccion, transaccionId } from './transaccion';
 import type { usuario, usuarioId } from './usuario';
 
 export interface suscripcionAttributes {
@@ -23,6 +24,18 @@ export class suscripcion extends Model<suscripcionAttributes, suscripcionCreatio
   estado!: boolean;
   idUsuario!: string;
 
+  // suscripcion hasMany transaccion via idSuscripcion
+  transaccions!: transaccion[];
+  getTransaccions!: Sequelize.HasManyGetAssociationsMixin<transaccion>;
+  setTransaccions!: Sequelize.HasManySetAssociationsMixin<transaccion, transaccionId>;
+  addTransaccion!: Sequelize.HasManyAddAssociationMixin<transaccion, transaccionId>;
+  addTransaccions!: Sequelize.HasManyAddAssociationsMixin<transaccion, transaccionId>;
+  createTransaccion!: Sequelize.HasManyCreateAssociationMixin<transaccion>;
+  removeTransaccion!: Sequelize.HasManyRemoveAssociationMixin<transaccion, transaccionId>;
+  removeTransaccions!: Sequelize.HasManyRemoveAssociationsMixin<transaccion, transaccionId>;
+  hasTransaccion!: Sequelize.HasManyHasAssociationMixin<transaccion, transaccionId>;
+  hasTransaccions!: Sequelize.HasManyHasAssociationsMixin<transaccion, transaccionId>;
+  countTransaccions!: Sequelize.HasManyCountAssociationsMixin;
   // suscripcion belongsTo usuario via idUsuario
   idUsuario_usuario!: usuario;
   getIdUsuario_usuario!: Sequelize.BelongsToGetAssociationMixin<usuario>;
@@ -34,7 +47,7 @@ export class suscripcion extends Model<suscripcionAttributes, suscripcionCreatio
     idSuscripcion: {
       type: DataTypes.UUID,
       allowNull: false,
-      defaultValue: DataTypes.UUIDV4, // ✅ genera UUID en Node.js,
+      defaultValue: Sequelize.Sequelize.fn('newsequentialid'),
       primaryKey: true
     },
     fechaInicio: {
