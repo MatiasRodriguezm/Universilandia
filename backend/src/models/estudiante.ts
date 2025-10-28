@@ -1,6 +1,8 @@
 import * as Sequelize from 'sequelize';
 import { DataTypes, Model } from 'sequelize';
 import type { Optional } from 'sequelize';
+import type { apoderado, apoderadoId } from './apoderado';
+import type { autorizacion, autorizacionId } from './autorizacion';
 import type { colegio, colegioId } from './colegio';
 import type { interesInsti, interesInstiId } from './interesInsti';
 import type { interesUni, interesUniId } from './interesUni';
@@ -46,6 +48,30 @@ export class estudiante extends Model<estudianteAttributes, estudianteCreationAt
   getIdColegio_colegio!: Sequelize.BelongsToGetAssociationMixin<colegio>;
   setIdColegio_colegio!: Sequelize.BelongsToSetAssociationMixin<colegio, colegioId>;
   createIdColegio_colegio!: Sequelize.BelongsToCreateAssociationMixin<colegio>;
+  // estudiante belongsToMany apoderado via idEstudiante and idApoderado
+  idApoderado_apoderados!: apoderado[];
+  getIdApoderado_apoderados!: Sequelize.BelongsToManyGetAssociationsMixin<apoderado>;
+  setIdApoderado_apoderados!: Sequelize.BelongsToManySetAssociationsMixin<apoderado, apoderadoId>;
+  addIdApoderado_apoderado!: Sequelize.BelongsToManyAddAssociationMixin<apoderado, apoderadoId>;
+  addIdApoderado_apoderados!: Sequelize.BelongsToManyAddAssociationsMixin<apoderado, apoderadoId>;
+  createIdApoderado_apoderado!: Sequelize.BelongsToManyCreateAssociationMixin<apoderado>;
+  removeIdApoderado_apoderado!: Sequelize.BelongsToManyRemoveAssociationMixin<apoderado, apoderadoId>;
+  removeIdApoderado_apoderados!: Sequelize.BelongsToManyRemoveAssociationsMixin<apoderado, apoderadoId>;
+  hasIdApoderado_apoderado!: Sequelize.BelongsToManyHasAssociationMixin<apoderado, apoderadoId>;
+  hasIdApoderado_apoderados!: Sequelize.BelongsToManyHasAssociationsMixin<apoderado, apoderadoId>;
+  countIdApoderado_apoderados!: Sequelize.BelongsToManyCountAssociationsMixin;
+  // estudiante hasMany autorizacion via idEstudiante
+  autorizacions!: autorizacion[];
+  getAutorizacions!: Sequelize.HasManyGetAssociationsMixin<autorizacion>;
+  setAutorizacions!: Sequelize.HasManySetAssociationsMixin<autorizacion, autorizacionId>;
+  addAutorizacion!: Sequelize.HasManyAddAssociationMixin<autorizacion, autorizacionId>;
+  addAutorizacions!: Sequelize.HasManyAddAssociationsMixin<autorizacion, autorizacionId>;
+  createAutorizacion!: Sequelize.HasManyCreateAssociationMixin<autorizacion>;
+  removeAutorizacion!: Sequelize.HasManyRemoveAssociationMixin<autorizacion, autorizacionId>;
+  removeAutorizacions!: Sequelize.HasManyRemoveAssociationsMixin<autorizacion, autorizacionId>;
+  hasAutorizacion!: Sequelize.HasManyHasAssociationMixin<autorizacion, autorizacionId>;
+  hasAutorizacions!: Sequelize.HasManyHasAssociationsMixin<autorizacion, autorizacionId>;
+  countAutorizacions!: Sequelize.HasManyCountAssociationsMixin;
   // estudiante hasMany interesInsti via idEstudiante
   interesInstis!: interesInsti[];
   getInteresInstis!: Sequelize.HasManyGetAssociationsMixin<interesInsti>;
@@ -86,7 +112,7 @@ export class estudiante extends Model<estudianteAttributes, estudianteCreationAt
     idEstudiante: {
       type: DataTypes.UUID,
       allowNull: false,
-      defaultValue: DataTypes.UUIDV4, // ✅ genera UUID en Node.js,
+      defaultValue: Sequelize.Sequelize.fn('newsequentialid'),
       primaryKey: true
     },
     telefono: {
@@ -112,7 +138,7 @@ export class estudiante extends Model<estudianteAttributes, estudianteCreationAt
     rut: {
       type: DataTypes.STRING(9),
       allowNull: false,
-      unique: "UQ__estudian__C2B74E7608A181E5"
+      unique: "UQ__estudian__C2B74E7697D0A368"
     },
     fechaNacimiento: {
       type: DataTypes.DATEONLY,
@@ -160,7 +186,7 @@ export class estudiante extends Model<estudianteAttributes, estudianteCreationAt
         ]
       },
       {
-        name: "UQ__estudian__C2B74E7608A181E5",
+        name: "UQ__estudian__C2B74E7697D0A368",
         unique: true,
         fields: [
           { name: "rut" },

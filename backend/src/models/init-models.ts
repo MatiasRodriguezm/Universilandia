@@ -1,59 +1,67 @@
 import type { Sequelize } from "sequelize";
-import { blog as _blog } from "./blog.js";
-import type { blogAttributes, blogCreationAttributes } from "./blog.js";
-import { carreraInstituto as _carreraInstituto } from "./carreraInstituto.js";
-import type { carreraInstitutoAttributes, carreraInstitutoCreationAttributes } from "./carreraInstituto.js";
-import { carreraUni as _carreraUni } from "./carreraUni.js";
-import type { carreraUniAttributes, carreraUniCreationAttributes } from "./carreraUni.js";
-import { colegio as _colegio } from "./colegio.js";
-import type { colegioAttributes, colegioCreationAttributes } from "./colegio.js";
-import { comentario as _comentario } from "./comentario.js";
-import type { comentarioAttributes, comentarioCreationAttributes } from "./comentario.js";
-import { comuna as _comuna } from "./comuna.js";
-import type { comunaAttributes, comunaCreationAttributes } from "./comuna.js";
-import { escuelaInstituto as _escuelaInstituto } from "./escuelaInstituto.js";
-import type { escuelaInstitutoAttributes, escuelaInstitutoCreationAttributes } from "./escuelaInstituto.js";
-import { escuelaUniversidad as _escuelaUniversidad } from "./escuelaUniversidad.js";
-import type { escuelaUniversidadAttributes, escuelaUniversidadCreationAttributes } from "./escuelaUniversidad.js";
-import { estudiante as _estudiante } from "./estudiante.js";
-import type { estudianteAttributes, estudianteCreationAttributes } from "./estudiante.js";
-import { instituto as _instituto } from "./instituto.js";
-import type { institutoAttributes, institutoCreationAttributes } from "./instituto.js";
-import { interesInsti as _interesInsti } from "./interesInsti.js";
-import type { interesInstiAttributes, interesInstiCreationAttributes } from "./interesInsti.js";
-import { interesUni as _interesUni } from "./interesUni.js";
-import type { interesUniAttributes, interesUniCreationAttributes } from "./interesUni.js";
-import { likeBlog as _likeBlog } from "./likeBlog.js";
-import type { likeBlogAttributes, likeBlogCreationAttributes } from "./likeBlog.js";
-import { multimedia as _multimedia } from "./multimedia.js";
-import type { multimediaAttributes, multimediaCreationAttributes } from "./multimedia.js";
-import { nivelEducacional as _nivelEducacional } from "./nivelEducacional.js";
-import type { nivelEducacionalAttributes, nivelEducacionalCreationAttributes } from "./nivelEducacional.js";
-import { pais as _pais } from "./pais.js";
-import type { paisAttributes, paisCreationAttributes } from "./pais.js";
-import { region as _region } from "./region.js";
-import type { regionAttributes, regionCreationAttributes } from "./region.js";
-import { suscripcion as _suscripcion } from "./suscripcion.js";
-import type { suscripcionAttributes, suscripcionCreationAttributes } from "./suscripcion.js";
-import { tipoColegio as _tipoColegio } from "./tipoColegio.js";
-import type { tipoColegioAttributes, tipoColegioCreationAttributes } from "./tipoColegio.js";
-import { transaccion as _transaccion } from "./transaccion.js";
-import type { transaccionAttributes, transaccionCreationAttributes } from "./transaccion.js";
-import { universidad as _universidad } from "./universidad.js";
-import type { universidadAttributes, universidadCreationAttributes } from "./universidad.js";
-import { usuario as _usuario } from "./usuario.js";
-import type { usuarioAttributes, usuarioCreationAttributes } from "./usuario.js";
-import { tokenInvalidado as _tokenInvalidado } from './tokenInvalidado.js';
-import type { tokenInvalidadoAttributes, tokenInvalidadoCreationAttributes } from './tokenInvalidado.js';
-import { comentario_auditoria as _comentario_auditoria } from "./comentarioAuditoria.js";
-import type { comentario_auditoriaAttributes, comentario_auditoriaCreationAttributes } from "./comentarioAuditoria.js";
+import { TokenInvalidado as _TokenInvalidado } from "./TokenInvalidado";
+import type { TokenInvalidadoAttributes, TokenInvalidadoCreationAttributes } from "./TokenInvalidado";
+import { apoderado as _apoderado } from "./apoderado";
+import type { apoderadoAttributes, apoderadoCreationAttributes } from "./apoderado";
+import { autorizacion as _autorizacion } from "./autorizacion";
+import type { autorizacionAttributes, autorizacionCreationAttributes } from "./autorizacion";
+import { blog as _blog } from "./blog";
+import type { blogAttributes, blogCreationAttributes } from "./blog";
+import { carreraInstituto as _carreraInstituto } from "./carreraInstituto";
+import type { carreraInstitutoAttributes, carreraInstitutoCreationAttributes } from "./carreraInstituto";
+import { carreraUni as _carreraUni } from "./carreraUni";
+import type { carreraUniAttributes, carreraUniCreationAttributes } from "./carreraUni";
+import { colegio as _colegio } from "./colegio";
+import type { colegioAttributes, colegioCreationAttributes } from "./colegio";
+import { comentario as _comentario } from "./comentario";
+import type { comentarioAttributes, comentarioCreationAttributes } from "./comentario";
+import { comentario_auditoria as _comentario_auditoria } from "./comentario_auditoria";
+import type { comentario_auditoriaAttributes, comentario_auditoriaCreationAttributes } from "./comentario_auditoria";
+import { comuna as _comuna } from "./comuna";
+import type { comunaAttributes, comunaCreationAttributes } from "./comuna";
+import { escuelaInstituto as _escuelaInstituto } from "./escuelaInstituto";
+import type { escuelaInstitutoAttributes, escuelaInstitutoCreationAttributes } from "./escuelaInstituto";
+import { escuelaUniversidad as _escuelaUniversidad } from "./escuelaUniversidad";
+import type { escuelaUniversidadAttributes, escuelaUniversidadCreationAttributes } from "./escuelaUniversidad";
+import { estudiante as _estudiante } from "./estudiante";
+import type { estudianteAttributes, estudianteCreationAttributes } from "./estudiante";
+import { instituto as _instituto } from "./instituto";
+import type { institutoAttributes, institutoCreationAttributes } from "./instituto";
+import { interesInsti as _interesInsti } from "./interesInsti";
+import type { interesInstiAttributes, interesInstiCreationAttributes } from "./interesInsti";
+import { interesUni as _interesUni } from "./interesUni";
+import type { interesUniAttributes, interesUniCreationAttributes } from "./interesUni";
+import { likeBlog as _likeBlog } from "./likeBlog";
+import type { likeBlogAttributes, likeBlogCreationAttributes } from "./likeBlog";
+import { multimedia as _multimedia } from "./multimedia";
+import type { multimediaAttributes, multimediaCreationAttributes } from "./multimedia";
+import { nivelEducacional as _nivelEducacional } from "./nivelEducacional";
+import type { nivelEducacionalAttributes, nivelEducacionalCreationAttributes } from "./nivelEducacional";
+import { pais as _pais } from "./pais";
+import type { paisAttributes, paisCreationAttributes } from "./pais";
+import { region as _region } from "./region";
+import type { regionAttributes, regionCreationAttributes } from "./region";
+import { suscripcion as _suscripcion } from "./suscripcion";
+import type { suscripcionAttributes, suscripcionCreationAttributes } from "./suscripcion";
+import { tipoColegio as _tipoColegio } from "./tipoColegio";
+import type { tipoColegioAttributes, tipoColegioCreationAttributes } from "./tipoColegio";
+import { transaccion as _transaccion } from "./transaccion";
+import type { transaccionAttributes, transaccionCreationAttributes } from "./transaccion";
+import { universidad as _universidad } from "./universidad";
+import type { universidadAttributes, universidadCreationAttributes } from "./universidad";
+import { usuario as _usuario } from "./usuario";
+import type { usuarioAttributes, usuarioCreationAttributes } from "./usuario";
 
 export {
+  _TokenInvalidado as TokenInvalidado,
+  _apoderado as apoderado,
+  _autorizacion as autorizacion,
   _blog as blog,
   _carreraInstituto as carreraInstituto,
   _carreraUni as carreraUni,
   _colegio as colegio,
   _comentario as comentario,
+  _comentario_auditoria as comentario_auditoria,
   _comuna as comuna,
   _escuelaInstituto as escuelaInstituto,
   _escuelaUniversidad as escuelaUniversidad,
@@ -68,14 +76,18 @@ export {
   _region as region,
   _suscripcion as suscripcion,
   _tipoColegio as tipoColegio,
+  _transaccion as transaccion,
   _universidad as universidad,
   _usuario as usuario,
-  _transaccion as transaccion,
-  _tokenInvalidado as tokenInvalidado,
-  _comentario_auditoria as comentario_auditoria,
 };
 
 export type {
+  TokenInvalidadoAttributes,
+  TokenInvalidadoCreationAttributes,
+  apoderadoAttributes,
+  apoderadoCreationAttributes,
+  autorizacionAttributes,
+  autorizacionCreationAttributes,
   blogAttributes,
   blogCreationAttributes,
   carreraInstitutoAttributes,
@@ -86,6 +98,8 @@ export type {
   colegioCreationAttributes,
   comentarioAttributes,
   comentarioCreationAttributes,
+  comentario_auditoriaAttributes,
+  comentario_auditoriaCreationAttributes,
   comunaAttributes,
   comunaCreationAttributes,
   escuelaInstitutoAttributes,
@@ -114,25 +128,24 @@ export type {
   suscripcionCreationAttributes,
   tipoColegioAttributes,
   tipoColegioCreationAttributes,
+  transaccionAttributes,
+  transaccionCreationAttributes,
   universidadAttributes,
   universidadCreationAttributes,
   usuarioAttributes,
   usuarioCreationAttributes,
-  transaccionAttributes,
-  transaccionCreationAttributes,
-  tokenInvalidadoAttributes,
-  tokenInvalidadoCreationAttributes,
-  comentario_auditoriaAttributes,
-  comentario_auditoriaCreationAttributes,
-  
 };
 
 export function initModels(sequelize: Sequelize) {
+  const TokenInvalidado = _TokenInvalidado.initModel(sequelize);
+  const apoderado = _apoderado.initModel(sequelize);
+  const autorizacion = _autorizacion.initModel(sequelize);
   const blog = _blog.initModel(sequelize);
   const carreraInstituto = _carreraInstituto.initModel(sequelize);
   const carreraUni = _carreraUni.initModel(sequelize);
   const colegio = _colegio.initModel(sequelize);
   const comentario = _comentario.initModel(sequelize);
+  const comentario_auditoria = _comentario_auditoria.initModel(sequelize);
   const comuna = _comuna.initModel(sequelize);
   const escuelaInstituto = _escuelaInstituto.initModel(sequelize);
   const escuelaUniversidad = _escuelaUniversidad.initModel(sequelize);
@@ -147,24 +160,30 @@ export function initModels(sequelize: Sequelize) {
   const region = _region.initModel(sequelize);
   const suscripcion = _suscripcion.initModel(sequelize);
   const tipoColegio = _tipoColegio.initModel(sequelize);
+  const transaccion = _transaccion.initModel(sequelize);
   const universidad = _universidad.initModel(sequelize);
   const usuario = _usuario.initModel(sequelize);
-  const transaccion = _transaccion.initModel(sequelize);
-  const tokenInvalidado = _tokenInvalidado.initModel(sequelize);
-  const comentario_auditoria = _comentario_auditoria.initModel(sequelize);
 
+  apoderado.belongsToMany(estudiante, { as: 'idEstudiante_estudiantes', through: autorizacion, foreignKey: "idApoderado", otherKey: "idEstudiante" });
+  estudiante.belongsToMany(apoderado, { as: 'idApoderado_apoderados', through: autorizacion, foreignKey: "idEstudiante", otherKey: "idApoderado" });
+  autorizacion.belongsTo(apoderado, { as: "idApoderado_apoderado", foreignKey: "idApoderado"});
+  apoderado.hasMany(autorizacion, { as: "autorizacions", foreignKey: "idApoderado"});
   comentario.belongsTo(blog, { as: "idBlog_blog", foreignKey: "idBlog"});
   blog.hasMany(comentario, { as: "comentarios", foreignKey: "idBlog"});
   likeBlog.belongsTo(blog, { as: "idBlog_blog", foreignKey: "idBlog"});
   blog.hasMany(likeBlog, { as: "likeBlogs", foreignKey: "idBlog"});
   estudiante.belongsTo(colegio, { as: "idColegio_colegio", foreignKey: "idColegio"});
   colegio.hasMany(estudiante, { as: "estudiantes", foreignKey: "idColegio"});
+  comentario_auditoria.belongsTo(comentario, { as: "idComentario_comentario", foreignKey: "idComentario"});
+  comentario.hasMany(comentario_auditoria, { as: "comentario_auditoria", foreignKey: "idComentario"});
   colegio.belongsTo(comuna, { as: "idComuna_comuna", foreignKey: "idComuna"});
   comuna.hasMany(colegio, { as: "colegios", foreignKey: "idComuna"});
   instituto.belongsTo(comuna, { as: "idComuna_comuna", foreignKey: "idComuna"});
   comuna.hasMany(instituto, { as: "institutos", foreignKey: "idComuna"});
   universidad.belongsTo(comuna, { as: "idComuna_comuna", foreignKey: "idComuna"});
   comuna.hasMany(universidad, { as: "universidads", foreignKey: "idComuna"});
+  autorizacion.belongsTo(estudiante, { as: "idEstudiante_estudiante", foreignKey: "idEstudiante"});
+  estudiante.hasMany(autorizacion, { as: "autorizacions", foreignKey: "idEstudiante"});
   interesInsti.belongsTo(estudiante, { as: "idEstudiante_estudiante", foreignKey: "idEstudiante"});
   estudiante.hasMany(interesInsti, { as: "interesInstis", foreignKey: "idEstudiante"});
   interesUni.belongsTo(estudiante, { as: "idEstudiante_estudiante", foreignKey: "idEstudiante"});
@@ -175,12 +194,16 @@ export function initModels(sequelize: Sequelize) {
   instituto.hasMany(escuelaInstituto, { as: "escuelaInstitutos", foreignKey: "idInstituto"});
   interesInsti.belongsTo(instituto, { as: "idInstituto_instituto", foreignKey: "idInstituto"});
   instituto.hasMany(interesInsti, { as: "interesInstis", foreignKey: "idInstituto"});
+  carreraUni.belongsTo(multimedia, { as: "idMultimedia_multimedium", foreignKey: "idMultimedia"});
+  multimedia.hasMany(carreraUni, { as: "carreraUnis", foreignKey: "idMultimedia"});
   estudiante.belongsTo(nivelEducacional, { as: "idNivelEducacional_nivelEducacional", foreignKey: "idNivelEducacional"});
   nivelEducacional.hasMany(estudiante, { as: "estudiantes", foreignKey: "idNivelEducacional"});
   region.belongsTo(pais, { as: "idPais_pai", foreignKey: "idPais"});
   pais.hasMany(region, { as: "regions", foreignKey: "idPais"});
   comuna.belongsTo(region, { as: "idRegion_region", foreignKey: "idRegion"});
   region.hasMany(comuna, { as: "comunas", foreignKey: "idRegion"});
+  transaccion.belongsTo(suscripcion, { as: "idSuscripcion_suscripcion", foreignKey: "idSuscripcion"});
+  suscripcion.hasMany(transaccion, { as: "transaccions", foreignKey: "idSuscripcion"});
   colegio.belongsTo(tipoColegio, { as: "idTipoColegio_tipoColegio", foreignKey: "idTipoColegio"});
   tipoColegio.hasMany(colegio, { as: "colegios", foreignKey: "idTipoColegio"});
   carreraUni.belongsTo(universidad, { as: "idUniversidad_universidad", foreignKey: "idUniversidad"});
@@ -191,32 +214,27 @@ export function initModels(sequelize: Sequelize) {
   universidad.hasMany(interesUni, { as: "interesUnis", foreignKey: "idUniversidad"});
   comentario.belongsTo(usuario, { as: "idUsuario_usuario", foreignKey: "idUsuario"});
   usuario.hasMany(comentario, { as: "comentarios", foreignKey: "idUsuario"});
+  comentario_auditoria.belongsTo(usuario, { as: "idUsuario_usuario", foreignKey: "idUsuario"});
+  usuario.hasMany(comentario_auditoria, { as: "comentario_auditoria", foreignKey: "idUsuario"});
   estudiante.belongsTo(usuario, { as: "idUsuario_usuario", foreignKey: "idUsuario"});
   usuario.hasMany(estudiante, { as: "estudiantes", foreignKey: "idUsuario"});
   likeBlog.belongsTo(usuario, { as: "idUsuario_usuario", foreignKey: "idUsuario"});
   usuario.hasMany(likeBlog, { as: "likeBlogs", foreignKey: "idUsuario"});
   suscripcion.belongsTo(usuario, { as: "idUsuario_usuario", foreignKey: "idUsuario"});
   usuario.hasMany(suscripcion, { as: "suscripcions", foreignKey: "idUsuario"});
-  transaccion.belongsTo(usuario, { as: "idUsuario_usuario", foreignKey: "idUsuario" });
-  usuario.hasMany(transaccion, { as: "transacciones", foreignKey: "idUsuario" });
-  comentario_auditoria.belongsTo(comentario, { as: "idComentario_comentario", foreignKey: "idComentario" });
-  comentario.hasMany(comentario_auditoria, { as: "auditorias", foreignKey: "idComentario" });
-  comentario_auditoria.belongsTo(usuario, { as: "idUsuario_usuario", foreignKey: "idUsuario" }); 
-  usuario.hasMany(comentario_auditoria, { as: "comentariosAuditados", foreignKey: "idUsuario" });
-  carreraUni.belongsTo(multimedia, { as: "multimedia", foreignKey: "idMultimedia" });
-  multimedia.hasMany(carreraUni, { as: "carreras", foreignKey: "idMultimedia" });
-  transaccion.belongsTo(suscripcion, {as: "idSuscripcion_suscripcion", foreignKey: "idSuscripcion",});
-  suscripcion.hasMany(transaccion, {as: "transacciones", foreignKey: "idSuscripcion",});
-
-  
-
+  transaccion.belongsTo(usuario, { as: "idUsuario_usuario", foreignKey: "idUsuario"});
+  usuario.hasMany(transaccion, { as: "transaccions", foreignKey: "idUsuario"});
 
   return {
+    TokenInvalidado: TokenInvalidado,
+    apoderado: apoderado,
+    autorizacion: autorizacion,
     blog: blog,
     carreraInstituto: carreraInstituto,
     carreraUni: carreraUni,
     colegio: colegio,
     comentario: comentario,
+    comentario_auditoria: comentario_auditoria,
     comuna: comuna,
     escuelaInstituto: escuelaInstituto,
     escuelaUniversidad: escuelaUniversidad,
@@ -231,10 +249,8 @@ export function initModels(sequelize: Sequelize) {
     region: region,
     suscripcion: suscripcion,
     tipoColegio: tipoColegio,
+    transaccion: transaccion,
     universidad: universidad,
     usuario: usuario,
-    transaccion: transaccion,
-    tokenInvalidado: tokenInvalidado,
-    comentario_auditoria: comentario_auditoria,
   };
 }
